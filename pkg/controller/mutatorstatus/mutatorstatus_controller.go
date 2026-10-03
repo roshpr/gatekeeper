@@ -100,7 +100,7 @@ func PodStatusToMutatorMapper(selfOnly bool, kindMatch string, packerMap handler
 				log.Error(fmt.Errorf("mutator status resource with no pod label: %s", obj.GetName()), "missing label while attempting to map a mutator status resource")
 			}
 			// Do not attempt to reconcile the resource when other pods have changed their status
-			if pod != util.GetPodName() {
+			if pod != v1beta1.PodLabelValue(util.GetPodName()) {
 				return nil
 			}
 		}

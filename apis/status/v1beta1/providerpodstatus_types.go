@@ -117,7 +117,7 @@ func NewProviderStatusForPod(pod *corev1.Pod, providerName string, scheme *runti
 	obj.Status.Operations = operations.AssignedStringList()
 	obj.SetLabels(map[string]string{
 		ProviderNameLabel: providerName,
-		PodLabel:          pod.Name,
+		PodLabel:          PodLabelValue(pod.Name),
 	})
 
 	if err := controllerutil.SetOwnerReference(pod, obj, scheme); err != nil {

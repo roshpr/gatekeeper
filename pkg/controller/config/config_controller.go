@@ -410,7 +410,7 @@ func (r *ReconcileConfig) updateOrCreatePodStatus(ctx context.Context, cfg *conf
 func (r *ReconcileConfig) repairConfigStatusMetadata(status *statusv1beta1.ConfigPodStatus, pod *corev1.Pod, cfg *configv1alpha1.Config) error {
 	mergeLabels(status, map[string]string{
 		statusv1beta1.ConfigNameLabel: cfg.GetName(),
-		statusv1beta1.PodLabel:        pod.Name,
+		statusv1beta1.PodLabel:        statusv1beta1.PodLabelValue(pod.Name),
 	})
 	if r.scheme == nil {
 		return nil

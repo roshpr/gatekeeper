@@ -88,7 +88,7 @@ func PodStatusToConfigMapper(selfOnly bool) handler.TypedMapFunc[*v1beta1.Config
 				log.Error(fmt.Errorf("config status resource with no pod label: %s", obj.GetName()), "missing label while attempting to map a config status resource")
 			}
 			// Do not attempt to reconcile the resource when other pods have changed their status
-			if pod != util.GetPodName() {
+			if pod != v1beta1.PodLabelValue(util.GetPodName()) {
 				return nil
 			}
 		}

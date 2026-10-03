@@ -118,7 +118,7 @@ func NewConstraintStatusForPod(pod *corev1.Pod, constraint *unstructured.Unstruc
 	obj.SetLabels(map[string]string{
 		ConstraintNameLabel: constraint.GetName(),
 		ConstraintKindLabel: constraint.GetKind(),
-		PodLabel:            pod.Name,
+		PodLabel:            PodLabelValue(pod.Name),
 		// the template name is the lower-case of the constraint kind
 		ConstraintTemplateNameLabel: strings.ToLower(constraint.GetKind()),
 	})

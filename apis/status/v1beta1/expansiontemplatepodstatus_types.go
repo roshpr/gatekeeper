@@ -77,7 +77,7 @@ func NewExpansionTemplateStatusForPod(pod *corev1.Pod, templateName string, sche
 	obj.Status.Operations = operations.AssignedStringList()
 	obj.SetLabels(map[string]string{
 		ExpansionTemplateNameLabel: templateName,
-		PodLabel:                   pod.Name,
+		PodLabel:                   PodLabelValue(pod.Name),
 	})
 
 	if err := controllerutil.SetOwnerReference(pod, obj, scheme); err != nil {

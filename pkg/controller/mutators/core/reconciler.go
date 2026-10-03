@@ -359,7 +359,7 @@ func (r *Reconciler) repairMutatorStatusMetadata(status *statusv1beta1.MutatorPo
 	mergeLabels(status, map[string]string{
 		statusv1beta1.MutatorNameLabel: mutatorID.Name,
 		statusv1beta1.MutatorKindLabel: mutatorID.Kind,
-		statusv1beta1.PodLabel:         pod.Name,
+		statusv1beta1.PodLabel:         statusv1beta1.PodLabelValue(pod.Name),
 	})
 	if r.scheme == nil {
 		return nil

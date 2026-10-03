@@ -130,7 +130,7 @@ func NewConnectionStatusForPod(pod *corev1.Pod, connectionNamespace, connectionN
 	obj.Status.Operations = operations.AssignedStringList()
 	obj.SetLabels(map[string]string{
 		v1beta1.ConnectionNameLabel: connectionName,
-		v1beta1.PodLabel:            pod.Name,
+		v1beta1.PodLabel:            v1beta1.PodLabelValue(pod.Name),
 	})
 
 	if err := controllerutil.SetOwnerReference(pod, obj, scheme); err != nil {

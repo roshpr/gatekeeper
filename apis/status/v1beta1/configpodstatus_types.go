@@ -79,7 +79,7 @@ func NewConfigStatusForPod(pod *corev1.Pod, configNamespace string, configName s
 	obj.Status.Operations = operations.AssignedStringList()
 	obj.SetLabels(map[string]string{
 		ConfigNameLabel: configName,
-		PodLabel:        pod.Name,
+		PodLabel:        PodLabelValue(pod.Name),
 	})
 
 	if err := controllerutil.SetOwnerReference(pod, obj, scheme); err != nil {
