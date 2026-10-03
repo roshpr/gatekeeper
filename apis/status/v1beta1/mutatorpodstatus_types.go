@@ -102,7 +102,7 @@ func NewMutatorStatusForPod(pod *corev1.Pod, mutatorID mtypes.ID, scheme *runtim
 	obj.SetLabels(map[string]string{
 		MutatorNameLabel: mutatorID.Name,
 		MutatorKindLabel: mutatorID.Kind,
-		PodLabel:         pod.Name,
+		PodLabel:         PodLabelValue(pod.Name),
 	})
 
 	if err := controllerutil.SetOwnerReference(pod, obj, scheme); err != nil {

@@ -345,7 +345,7 @@ func updateOrCreateConnectionPodStatus(ctx context.Context,
 func repairConnectionPodStatusMetadata(scheme *runtime.Scheme, status *statusv1alpha1.ConnectionPodStatus, pod *corev1.Pod, connObj *connectionv1alpha1.Connection) error {
 	mergeLabels(status, map[string]string{
 		statusv1beta1.ConnectionNameLabel: connObj.GetName(),
-		statusv1beta1.PodLabel:            pod.Name,
+		statusv1beta1.PodLabel:            statusv1beta1.PodLabelValue(pod.Name),
 	})
 	if scheme == nil {
 		return nil

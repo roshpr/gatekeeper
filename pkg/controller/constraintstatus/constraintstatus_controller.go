@@ -103,7 +103,7 @@ func PodStatusToConstraintMapper(selfOnly bool, packerMap handler.MapFunc) handl
 				log.Error(fmt.Errorf("constraint status resource with no pod label: %s", obj.GetName()), "missing label while attempting to map a constraint status resource")
 			}
 			// Do not attempt to reconcile the resource when other pods have changed their status
-			if pod != util.GetPodName() {
+			if pod != v1beta1.PodLabelValue(util.GetPodName()) {
 				return nil
 			}
 		}

@@ -99,7 +99,7 @@ func NewConstraintTemplateStatusForPod(pod *corev1.Pod, templateName string, sch
 	obj.Status.Operations = operations.AssignedStringList()
 	obj.SetLabels(map[string]string{
 		ConstraintTemplateNameLabel: templateName,
-		PodLabel:                    pod.Name,
+		PodLabel:                    PodLabelValue(pod.Name),
 	})
 
 	if err := controllerutil.SetOwnerReference(pod, obj, scheme); err != nil {

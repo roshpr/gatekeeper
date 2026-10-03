@@ -613,7 +613,7 @@ func (r *ReconcileConstraintTemplate) deleteAllStatus(ctx context.Context, ctNam
 
 	cstrStatusObjs := &statusv1beta1.ConstraintPodStatusList{}
 	if err := r.List(ctx, cstrStatusObjs, client.MatchingLabels(map[string]string{
-		statusv1beta1.PodLabel:                    util.GetPodName(),
+		statusv1beta1.PodLabel:                    statusv1beta1.PodLabelValue(util.GetPodName()),
 		statusv1beta1.ConstraintTemplateNameLabel: ctName,
 	})); err != nil {
 		return err

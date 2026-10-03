@@ -90,7 +90,7 @@ func PodStatusToConstraintTemplateMapper(selfOnly bool) handler.TypedMapFunc[*v1
 				log.Error(fmt.Errorf("constraint template status resource with no pod label: %s", obj.GetName()), "missing label while attempting to map a constraint template status resource")
 			}
 			// Do not attempt to reconcile the resource when other pods have changed their status
-			if pod != util.GetPodName() {
+			if pod != v1beta1.PodLabelValue(util.GetPodName()) {
 				return nil
 			}
 		}
